@@ -5,8 +5,7 @@ import { motion, useReducedMotion } from "framer-motion";
 import { profile } from "@/data/profile";
 import { socials } from "@/data/socials";
 import { projects } from "@/data/projects";
-import { services } from "@/data/services";
-import { experience } from "@/data/experience";
+import { expertise } from "@/data/expertise";
 import { scrollToId } from "@/lib/scroll";
 import { EASE } from "@/lib/motion";
 import StatusPill from "./StatusPill";
@@ -18,8 +17,8 @@ import MobileMenu from "./MobileMenu";
 
 const navLinks = [
   { label: "Work", id: "work", count: projects.length },
-  { label: "Service", id: "service", count: services.length },
-  { label: "Experience", id: "experience", count: `${experience.length}` },
+  { label: "Expertise", id: "expertise", count: expertise.length },
+  { label: "Experience", id: "experience", count: 3 },
   { label: "Contact", id: "contact" },
 ];
 
@@ -37,7 +36,7 @@ export default function Hero() {
         transition={{ duration: 0.6, ease: EASE }}
         className="flex items-center justify-between gap-3 px-[clamp(20px,4.2vw,65px)] pt-[clamp(24px,3.5vw,56px)]"
       >
-        <StatusPill text={profile.availability} />
+        <StatusPill text={profile.status} />
         <div className="hidden items-center gap-7 lg:flex">
           {navLinks.map((l) => (
             <button
@@ -52,7 +51,7 @@ export default function Hero() {
         </div>
         <div className="flex items-center gap-2">
           <div className="hidden lg:block">
-            <PillButton href="#contact">Let&apos;s Talk</PillButton>
+            <PillButton href={`mailto:${profile.email}`}>Let&apos;s Talk</PillButton>
           </div>
           <button
             onClick={() => setMenu(true)}
@@ -79,13 +78,9 @@ export default function Hero() {
           className="order-2 max-w-[330px] text-center lg:order-1 lg:text-left"
         >
           <p className="text-[30px] font-semibold leading-tight text-[#1A1A1A]">{profile.role}</p>
-          <p className="mt-2 text-[17px] leading-[1.65] text-[#555]">
-            {profile.description[0]}
-            <br />
-            {profile.description[1]}
-          </p>
+          <p className="mt-2 max-w-[330px] text-[17px] leading-[1.65] text-[#555]">{profile.description}</p>
           <div className="mt-4 flex justify-center lg:justify-start">
-            <PillButton href="#contact">Let&apos;s collaborate</PillButton>
+            <PillButton href={`mailto:${profile.email}`}>Let&apos;s collaborate</PillButton>
           </div>
         </motion.div>
 
@@ -104,7 +99,7 @@ export default function Hero() {
               <a
                 href={s.href}
                 target="_blank"
-                rel="noreferrer"
+                rel="noopener noreferrer"
                 className="inline-flex min-h-[44px] items-center gap-2 rounded-full border border-[#EAEAEA] bg-white px-4 py-2 text-[clamp(13px,1.1vw,17px)] font-medium text-[#1A1A1A] transition-transform hover:-translate-y-0.5"
               >
                 <SocialIcon icon={s.icon} />

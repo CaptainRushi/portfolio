@@ -2,7 +2,7 @@
 import { useState } from "react";
 import Image from "next/image";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
-import { services } from "@/data/services";
+import { expertise } from "@/data/expertise";
 import SectionTitle from "./SectionTitle";
 import GhostWatermark from "./GhostWatermark";
 import FloatingPreview, { useCursorPreview } from "./FloatingPreview";
@@ -15,19 +15,19 @@ export default function ServiceAccordion() {
 
   return (
     <section
-      id="service"
-      aria-labelledby="service-title"
+      id="expertise"
+      aria-labelledby="expertise-title"
       className="relative bg-[#F6F6F6] px-5 py-16 md:px-10 md:py-24"
       onMouseMove={onMove}
     >
       <div className="relative mx-auto max-w-[1000px]">
-        <GhostWatermark text="SERVICE" />
-        <span id="service-title" className="relative block">
-          <SectionTitle text="SERVICE" />
+        <GhostWatermark text="EXPERTISE" />
+        <span id="expertise-title" className="relative block">
+          <SectionTitle text="EXPERTISE" />
         </span>
       </div>
       <div className="mx-auto mt-10 max-w-[1000px]">
-        {services.map((s, i) => {
+        {expertise.map((s, i) => {
           const isOpen = open === i;
           return (
             <motion.div
@@ -57,10 +57,7 @@ export default function ServiceAccordion() {
                       <span className="block text-white">
                         {s.title}
                         <span className="mt-3 block max-w-xl text-[17px] normal-case leading-[1.65] tracking-normal text-[#BDBDBD]">
-                          {s.description[0]}
-                        </span>
-                        <span className="block max-w-xl text-[17px] normal-case leading-[1.65] tracking-normal text-[#BDBDBD]">
-                          {s.description[1]}
+                          {s.blurb}
                         </span>
                       </span>
                     ) : (

@@ -14,9 +14,12 @@ npm run build && npm start
 
 | File | What |
 |---|---|
-| `data/profile.ts` | Name, role, description, email, portrait paths |
-| `data/projects.ts` | The 4 projects: titles, badges, tags, timeline, tools, captions |
+| `data/profile.ts` | Name, role, description, status, email, footer copy, asset paths |
+| `data/projects.ts` | The 4 projects: titles, kinds, chips, timeline, tools, highlights |
 | `data/services.ts` | The 4 service rows + descriptions + preview images |
+| `data/expertise.ts` | The 4 expertise rows + blurbs + preview images |
+| `data/experience.ts` | Experience rows (org/role/dates/points) + meta line |
+| `data/writing.ts` | DEV posts (title/date/url); section hides when empty |
 | `data/experience.ts` | Experience rows + years label |
 | `data/socials.ts` | Social links (icons: github, linkedin, x, mail) |
 
@@ -34,6 +37,17 @@ If portrait files are missing, an initials monogram shows instead — nothing br
 ## Structure
 
 `app/` (routes + `globals.css` + `template.tsx` fade) · `components/` (`Sheet`, `CloudBackground`, `Curtain`, `Pill`, `PillButton`≡Button, `StatusPill`, `SectionTitle`, `GhostWatermark`, `HeroName`, `PortraitReveal`, `WorkCard`, `CursorBubble`, `FloatingPreview`, `ServiceAccordion`, `ExperienceRow`, `CurtainFooter`, `PageTransition`, `MobileMenu`, `Hero`, `SelectedWork`, `Experience`, `Reveal`) · `data/` · `lib/` (`motion.ts`: easing + `SPRINGS`; `scroll.ts`: sheet scroll helpers).
+
+## TODO placeholders (intentional, muted — not broken)
+
+- Project screenshots: `images: []` for all 4 projects. Add PNGs under `public/projects/<slug>/` and list them in `data/projects.ts`.
+- Project covers: generated PNG placeholders at `public/projects/*/cover.png` — replace with real screenshots.
+- Mission Control: caption + 3 highlights are `TODO` lines (verify the $0/month claim before keeping it).
+- Trueframe: accuracy-numbers `TODO` + missing repo link (`liveUrl` unset, so no Live Preview button renders).
+- Optional extras (APES OS, Trace Dev): no detail pages until details are added.
+- Portrait: `public/portrait.svg` / `portrait-color.svg` are stand-ins — swap in the transparent PNG cutout (+ same-crop color copy).
+
+Note: the `portfolio-content-prompt.md` "verify" list wasn't supplied, so QA was done against section 8 of the build prompt instead: numbers match exactly (170+ commits, 4 tiers, 3 workflows, Dec 2025, Oct 2025, Aug 2025, May 2025, Jun 2026), no phone number, no revenue/customer claims, all external links open in a new tab with `rel="noopener noreferrer"`.
 
 ## Tune springs
 

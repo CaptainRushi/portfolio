@@ -38,7 +38,7 @@ export default function SelectedWork({ limit = 4 }: { limit?: number }) {
             </button>
           ))}
         </div>
-        <PillButton href="#work" variant="light">
+        <PillButton href="https://github.com/CaptainRushi" variant="light" external>
           View All Work
         </PillButton>
       </div>

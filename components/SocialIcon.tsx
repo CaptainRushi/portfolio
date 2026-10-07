@@ -18,6 +18,15 @@ export default function SocialIcon({ icon, className = "h-4 w-4" }: { icon: stri
         <path d="M18.9 2.1h3.68l-8.04 9.19L24 23.9h-7.41l-5.8-7.58-6.64 7.58H.47l8.6-9.83L0 2.1h7.6l5.24 6.93L18.9 2.1Zm-1.29 19.6h2.04L6.49 4.16H4.3l13.31 17.54Z" />
       </svg>
     );
+  if (icon === "dev")
+    return (
+      <svg {...common} fill="none">
+        <rect x="2" y="2" width="20" height="20" rx="4" fill="currentColor" />
+        <text x="12" y="16" textAnchor="middle" fontSize="9" fontWeight="bold" fill="#F6F6F6" fontFamily="sans-serif">
+          DEV
+        </text>
+      </svg>
+    );
   return (
     <svg {...common} fill="none" stroke="currentColor" strokeWidth={2}>
       <rect x="2" y="4" width="20" height="16" rx="2" />

@@ -5,7 +5,7 @@ import { EASE } from "@/lib/motion";
 
 const links = [
   { label: "Work", id: "work" },
-  { label: "Service", id: "service" },
+  { label: "Expertise", id: "expertise" },
   { label: "Experience", id: "experience" },
   { label: "Contact", id: "contact" },
 ];

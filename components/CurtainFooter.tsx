@@ -15,15 +15,13 @@ export default function CurtainFooter() {
       <div className="relative">
         <Reveal>
           <div className="flex justify-center">
-            <StatusPill text={profile.availability} />
+            <StatusPill text={profile.status} />
           </div>
           <h2 className="mx-auto mt-6 max-w-3xl font-[Manrope] text-[clamp(32px,3.7vw,58px)] font-extrabold uppercase leading-tight tracking-[-0.02em] text-[#2A2A2A]">
-            {profile.ctaProject}
+            {profile.footerHeading}
           </h2>
           <p className="mx-auto mt-4 max-w-[810px] text-[clamp(16px,1.3vw,20px)] leading-[1.7] text-[#6B6B6B]">
-            {profile.ctaSub[0]}
-            <br />
-            {profile.ctaSub[1]}
+            {profile.footerSub}
           </p>
           <div className="mt-8">
             <PillButton href={`mailto:${profile.email}`} ring>
@@ -32,19 +30,19 @@ export default function CurtainFooter() {
           </div>
         </Reveal>
         <Reveal index={1}>
-          <div className="mx-auto mt-16 flex max-w-[940px] flex-wrap items-center justify-around gap-3 pb-10">
+          <div className="mx-auto mt-16 flex max-w-[940px] flex-wrap items-center justify-around gap-3 pb-[120px]">
             <span className="inline-flex min-h-[44px] items-center gap-2 rounded-full bg-[#2A2A2A] px-4 py-2 text-[clamp(13px,1.1vw,17px)] font-medium text-white shadow-[0_10px_24px_rgba(0,0,0,.25)]">
               <span className="flex h-6 w-6 items-center justify-center rounded-full bg-[#8A8A8A] font-[Poppins] text-[11px] font-bold">
-                {profile.firstName[0]}
+                R
               </span>
-              {profile.firstName} {profile.lastName}
+              Rushikesh Bodakhe
             </span>
             {socials.map((s) => (
               <a
                 key={s.label}
                 href={s.href}
                 target="_blank"
-                rel="noreferrer"
+                rel="noopener noreferrer"
                 className="inline-flex min-h-[44px] items-center gap-2 rounded-full border border-black/[.04] bg-white px-4 py-2 text-[clamp(13px,1.1vw,17px)] font-medium text-[#1A1A1A] shadow-[0_4px_14px_rgba(0,0,0,.06)] transition-transform hover:-translate-y-0.5"
               >
                 <SocialIcon icon={s.icon} />

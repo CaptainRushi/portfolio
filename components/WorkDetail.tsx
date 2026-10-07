@@ -60,7 +60,7 @@ export default function WorkDetail({ project, others }: { project: Project; othe
                 >
                   ← Back
                 </Link>
-                <StatusPill text={profile.availability} />
+                <StatusPill text={profile.status} />
               </div>
 
               {/* header */}
@@ -71,7 +71,7 @@ export default function WorkDetail({ project, others }: { project: Project; othe
                   transition={{ duration: 0.6, ease: EASE, delay: reduce ? 0 : 0.5 }}
                 >
                   <div className="flex gap-2">
-                    {project.tags.map((t) => (
+                    {project.chips.map((t) => (
                       <span
                         key={t}
                         className="rounded-full border border-black/[.04] bg-white px-3 py-1 text-[12px] shadow-[0_4px_14px_rgba(0,0,0,.06)]"
@@ -113,8 +113,8 @@ export default function WorkDetail({ project, others }: { project: Project; othe
                   ))}
                   <div>
                     <dt className="text-[14px] uppercase tracking-wider text-[#B0B0B0]">Tools</dt>
-                    <dd className="mt-2 flex justify-end gap-1.5 max-md:justify-start">
-                      {project.tools.slice(0, 4).map((t) => (
+                    <dd className="mt-2 flex flex-wrap justify-end gap-1.5 max-md:justify-start">
+                      {project.tools.map((t) => (
                         <span
                           key={t}
                           title={t}
@@ -130,8 +130,37 @@ export default function WorkDetail({ project, others }: { project: Project; othe
 
               {/* body */}
               <div className="space-y-6 px-[clamp(20px,6.4vw,100px)] pb-4">
-                <FramedShot src={project.images[0]} alt={`${project.title} overview`} caption={project.caption} index={0} />
-                <FramedShot src={project.images[1] ?? project.images[0]} alt={`${project.title} detail`} index={1} />
+                <FramedShot src={project.cover} alt={`${project.title} overview`} index={0} />
+                <Reveal>
+                  <div className="rounded-[6px] bg-white p-6 shadow-[0_10px_30px_rgba(0,0,0,.08)] md:p-8">
+                    <ul className="mx-auto max-w-2xl space-y-3">
+                      {project.highlights.map((h) => (
+                        <li
+                          key={h.slice(0, 40)}
+                          className={`list-disc pl-1 text-[clamp(15px,1.2vw,18px)] leading-[1.65] ${
+                            h.startsWith("TODO") ? "text-[#B0B0B0]" : "text-[#555]"
+                          }`}
+                        >
+                          {h}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                </Reveal>
+                <Reveal index={1}>
+                  <div className="rounded-[6px] bg-white p-6 text-center shadow-[0_10px_30px_rgba(0,0,0,.08)] md:p-8">
+                    <p
+                      className={`mx-auto max-w-xl text-[clamp(16px,1.3vw,20px)] leading-[1.65] ${
+                        project.caption.startsWith("TODO") ? "text-[#B0B0B0]" : "text-[#555]"
+                      }`}
+                    >
+                      {project.caption}
+                    </p>
+                  </div>
+                </Reveal>
+                {project.images.map((src, i) => (
+                  <FramedShot key={src + i} src={src} alt={`${project.title} screenshot ${i + 1}`} index={i} />
+                ))}
               </div>
 
               {/* more work */}

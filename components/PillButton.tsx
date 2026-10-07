@@ -33,11 +33,18 @@ export default function PillButton({ href, children, variant = "dark", className
       </button>
     );
   }
-  return external ? (
-    <a href={href} className={cls} target="_blank" rel="noreferrer">
-      {inner}
-    </a>
-  ) : (
+  if (external || href.startsWith("mailto:")) {
+    return (
+      <a
+        href={href}
+        className={cls}
+        {...(external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+      >
+        {inner}
+      </a>
+    );
+  }
+  return (
     <Link href={href} className={cls}>
       {inner}
     </Link>
