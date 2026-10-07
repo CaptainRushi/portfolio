@@ -1,6 +1,7 @@
 "use client";
 import Image from "next/image";
 import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
+import type { MotionValue } from "framer-motion";
 
 const EASE = [0.22, 1, 0.36, 1] as const;
 
@@ -22,9 +23,9 @@ export default function FloatingPreview({
   visible,
 }: {
   src: string;
-  x: ReturnType<typeof useSpring<number>>;
-  y: ReturnType<typeof useSpring<number>>;
-  rotate: ReturnType<typeof useTransform<number, number>>;
+  x: MotionValue<number>;
+  y: MotionValue<number>;
+  rotate: MotionValue<number>;
   visible: boolean;
 }) {
   return (

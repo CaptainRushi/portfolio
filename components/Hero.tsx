@@ -77,10 +77,9 @@ function Portrait() {
         <motion.div
           className="absolute inset-0"
           style={{
-            // @ts-expect-error framer-motion supports maskImage as motion style
             WebkitMaskImage: mask,
             maskImage: mask,
-          }}
+          } as never}
         >
           <Image
             src={profile.portraitColor}
