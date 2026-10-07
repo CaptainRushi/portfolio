@@ -1,67 +1,61 @@
 "use client";
-import { useState } from "react";
-import Image from "next/image";
-import { motion, useMotionValue, useSpring, useReducedMotion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 import { experience, yearsOfExperience } from "@/data/experience";
 import SectionTitle from "./SectionTitle";
 import GhostWatermark from "./GhostWatermark";
-import Reveal from "./Reveal";
+import FloatingPreview, { useCursorPreview } from "./FloatingPreview";
+import { EASE } from "@/lib/motion";
 
 export function ExperienceRow({ e, index }: { e: (typeof experience)[number]; index: number }) {
+  const reduce = useReducedMotion();
   return (
-    <Reveal index={index}>
-      <div className="flex items-baseline justify-between gap-4 border-b border-[#3A3A3A] py-6">
-        <div>
-          <p className="text-[17px] font-medium text-white">{e.company}</p>
-          <p className="mt-1 text-[13px] text-[#9A9A9A]">{e.role}</p>
-        </div>
-        <p className="shrink-0 text-[13px] text-[#9A9A9A]">{e.dates}</p>
+    <motion.div
+      initial={{ opacity: reduce ? 0 : 0.45, y: reduce ? 0 : 24 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: "-60px" }}
+      transition={{ duration: 0.7, ease: EASE, delay: index * 0.07 }}
+      className="flex items-baseline justify-between gap-4 border-b border-[#3A3A3A] py-8 lg:py-9"
+    >
+      <div>
+        <p className="text-[clamp(19px,1.6vw,25px)] font-medium leading-[1.5] text-white">{e.company}</p>
+        <p className="mt-1 text-[clamp(16px,1.6vw,25px)] font-normal leading-[1.5] text-[#8F8F8F]">{e.role}</p>
       </div>
-    </Reveal>
+      <p className="shrink-0 pr-[14px] text-right text-[clamp(15px,1.4vw,22px)] text-[#9A9A9A]">{e.dates}</p>
+    </motion.div>
   );
 }
 
 export default function Experience() {
-  const [preview, setPreview] = useState<string | null>(null);
-  const reduce = useReducedMotion();
-  const mx = useMotionValue(0);
-  const my = useMotionValue(0);
-  const px = useSpring(mx, { stiffness: 250, damping: 24, mass: 0.7 });
-  const py = useSpring(my, { stiffness: 250, damping: 24, mass: 0.7 });
+  const { preview, setPreview, onMove, px, py, tilt, reduce } = useCursorPreview();
 
   return (
     <section
       id="experience"
       aria-labelledby="exp-title"
-      className="relative rounded-t-[24px] bg-[#262626] px-5 py-16 md:rounded-t-[32px] md:px-10 md:py-24"
-      onMouseMove={(e) => {
-        if (reduce) return;
-        mx.set(e.clientX);
-        my.set(e.clientY);
-      }}
-      onMouseLeave={() => setPreview(null)}
+      className="relative rounded-b-[8px] rounded-t-[8px] bg-[#262626] px-5 py-16 md:px-10 md:py-24"
+      onMouseMove={onMove}
     >
-      <GhostWatermark text="EXPERIENCE" dark />
-      <div className="relative flex flex-wrap items-baseline justify-between gap-3">
-        <span id="exp-title">
-          <SectionTitle text="EXPERIENCE" dark />
-        </span>
-        <p className="text-[13px] text-[#9A9A9A]">{yearsOfExperience}</p>
+      <div className="relative mx-auto max-w-[1000px]">
+        <GhostWatermark text="EXPERIENCE" dark />
+        <div className="relative flex flex-wrap items-baseline justify-between gap-3">
+          <span id="exp-title">
+            <SectionTitle text="EXPERIENCE" dark />
+          </span>
+          <p className="text-[clamp(15px,1.3vw,20px)] text-[#9A9A9A]">{yearsOfExperience}</p>
+        </div>
       </div>
-      <div className="relative mx-auto mt-6 max-w-4xl">
+      <div className="mx-auto mt-8 max-w-[1000px]">
         {experience.map((e, i) => (
-          <div key={e.company} onMouseEnter={() => !reduce && setPreview(e.preview)} onMouseLeave={() => setPreview(null)}>
+          <div
+            key={e.company}
+            onMouseEnter={() => !reduce && setPreview(e.preview)}
+            onMouseLeave={() => !reduce && setPreview(null)}
+          >
             <ExperienceRow e={e} index={i} />
           </div>
         ))}
       </div>
-      {!reduce && preview && (
-        <motion.div aria-hidden="true" className="pointer-events-none fixed left-0 top-0 z-40 hidden md:block" style={{ x: px, y: py }}>
-          <div className="h-40 w-56 -translate-x-1/2 -translate-y-[110%] rotate-[6deg] overflow-hidden rounded-lg bg-white shadow-[0_20px_50px_rgba(0,0,0,.5)]">
-            <Image src={preview} alt="" width={224} height={160} className="h-full w-full object-cover" />
-          </div>
-        </motion.div>
-      )}
+      {!reduce && preview && <FloatingPreview src={preview} x={px} y={py} tilt={tilt} visible />}
     </section>
   );
 }

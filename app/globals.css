@@ -5,13 +5,14 @@
   --font-hero: "Poppins", ui-sans-serif, system-ui, sans-serif;
   --font-section: "Inter", ui-sans-serif, system-ui, sans-serif;
 
-  --color-sheet: #f5f5f5;
+  --color-sheet: #f6f6f6;
   --color-ink: #1a1a1a;
   --color-coal: #262626;
   --color-coal-soft: #2a2a2a;
   --color-muted: #8a8a8a;
   --color-muted-dark: #9a9a9a;
-  --color-hairline: #e3e3e3;
+  --color-body: #555555;
+  --color-hairline: #d9d9d9;
   --color-hairline-dark: #3a3a3a;
   --color-status: #22c55e;
 
@@ -35,6 +36,35 @@ body {
   background: #6f6f6f;
   color: var(--color-ink);
   -webkit-font-smoothing: antialiased;
+  overflow: hidden;
+  height: 100dvh;
+}
+
+/* Inner sheet scroll container — hidden scrollbar */
+.sheet-scroll {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+.sheet-scroll::-webkit-scrollbar {
+  display: none;
+}
+
+/* Signature cursor color-reveal on the portrait */
+.portrait-color {
+  --mx: 50%;
+  --my: 50%;
+  -webkit-mask-image: radial-gradient(circle 60px at var(--mx) var(--my), #000 55%, transparent 100%);
+  mask-image: radial-gradient(circle 60px at var(--mx) var(--my), #000 55%, transparent 100%);
+}
+
+/* Diagonal light streaks for the detail page transition */
+.streaks {
+  background: repeating-linear-gradient(
+    55deg,
+    rgba(255, 255, 255, 0.75) 0 60px,
+    rgba(190, 190, 190, 0.28) 60px 140px,
+    transparent 140px 220px
+  );
 }
 
 /* Fixed cloud backdrop — never scrolls */

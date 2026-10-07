@@ -1,9 +1,9 @@
 // Edit me: personal profile content. No component changes needed.
 export const profile = {
   firstName: "RUSHI", // outlined word in hero
-  lastName: "PATEL", // solid word in hero — single name? split it, e.g. "RUSH"/"I"
+  lastName: "KESH", // solid word in hero — split a long name when there is no surname
   role: "Full-Stack Builder — SaaS, Multi-Agent AI, Agentic Infrastructure",
-  description: ["Building full-stack products and", "AI agent systems that ship."],
+  description: ["Building full-stack products and AI", "agent systems that ship."],
   email: "hello@example.com",
   portrait: "/portrait.svg", // transparent-bg PNG cutout (falls back to initials monogram)
   portraitColor: "/portrait-color.svg", // optional color copy for cursor reveal (falls back to portrait)

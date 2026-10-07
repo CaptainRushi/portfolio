@@ -25,7 +25,7 @@ npm run build && npm start
 | Slot | Path | Spec |
 |---|---|---|
 | Portrait (gray base) | `public/portrait.svg` → replace with `portrait.png` | Transparent-bg PNG cutout, ~660×840 |
-| Portrait (color reveal) | `public/portrait-color.svg` → `portrait-color.png` | Same crop as base; shown in 70px cursor circle |
+| Portrait (color reveal) | `public/portrait-color.svg` → `portrait-color.png` | Same crop as base; shown in 60px cursor circle |
 | Clouds | add `public/clouds.jpg` | Grayscale mid-gray photo; fixed backdrop (gradient fallback until added) |
 | Projects | `public/work/*.svg` | 4 screenshots ~1200×900; referenced from `data/projects.ts` |
 
@@ -33,7 +33,11 @@ If portrait files are missing, an initials monogram shows instead — nothing br
 
 ## Structure
 
-`app/` (routes + `globals.css`) · `components/` (reusable: `PillButton`, `StatusPill`, `SectionTitle`, `GhostWatermark`, `WorkCard`, `FloatingPreview`, `CursorFollower`, `ServiceAccordion`, `ExperienceRow`, `CurtainFooter`, `Hero`, `SelectedWork`, `Experience`, `Reveal`, `SmoothScroll`) · `data/` · `lib/` (`motion.ts`: shared easing, reduced-motion + touch helpers).
+`app/` (routes + `globals.css` + `template.tsx` fade) · `components/` (`Sheet`, `CloudBackground`, `Curtain`, `Pill`, `PillButton`≡Button, `StatusPill`, `SectionTitle`, `GhostWatermark`, `HeroName`, `PortraitReveal`, `WorkCard`, `CursorBubble`, `FloatingPreview`, `ServiceAccordion`, `ExperienceRow`, `CurtainFooter`, `PageTransition`, `MobileMenu`, `Hero`, `SelectedWork`, `Experience`, `Reveal`) · `data/` · `lib/` (`motion.ts`: easing + `SPRINGS`; `scroll.ts`: sheet scroll helpers).
+
+## Tune springs
+
+`lib/motion.ts` → `SPRINGS`: `preview` (floating images, default `{220, 24}`), `bubble` (card ↗), `portrait` (legacy). Portrait color-reveal uses rAF lerp `0.15`/frame in `PortraitReveal.tsx`; mask radius lives in `globals.css` (`.portrait-color`, currently `60px`).
 
 ## Notes
 
