@@ -18,7 +18,7 @@ export const profile = {
   footerHeading: "HAVE A ROLE OR PROJECT IN MIND?",
   footerSub:
     "I'm a B.Tech (AI) graduate who shipped a live multi-tenant SaaS end to end. If you need a backend or AI-agent engineer who ships from day one, let's talk.",
-  portrait: "/portrait.svg", // TODO: replace with transparent-bg portrait PNG cutout
-  portraitColor: "/portrait-color.svg", // TODO: color copy, same crop as portrait
+  portrait: "/portrait.png", // transparent-bg cutout (monogram fallback if missing)
+  portraitColor: "/portrait.png", // same file; base layer is grayscaled via CSS
   clouds: "/clouds.jpg",
 };

@@ -27,8 +27,7 @@ npm run build && npm start
 
 | Slot | Path | Spec |
 |---|---|---|
-| Portrait (gray base) | `public/portrait.svg` → replace with `portrait.png` | Transparent-bg PNG cutout, ~660×840 |
-| Portrait (color reveal) | `public/portrait-color.svg` → `portrait-color.png` | Same crop as base; shown in 60px cursor circle |
+| Portrait | `public/portrait.png` | Transparent-bg cutout, 720px wide; doubles as the color-reveal copy (base layer grayscaled in CSS) |
 | Clouds | add `public/clouds.jpg` | Grayscale mid-gray photo; fixed backdrop (gradient fallback until added) |
 | Projects | `public/work/*.svg` | 4 screenshots ~1200×900; referenced from `data/projects.ts` |
 
@@ -45,7 +44,7 @@ If portrait files are missing, an initials monogram shows instead — nothing br
 - Mission Control: caption + 3 highlights are `TODO` lines (verify the $0/month claim before keeping it).
 - Trueframe: accuracy-numbers `TODO` + missing repo link (`liveUrl` unset, so no Live Preview button renders).
 - Optional extras (APES OS, Trace Dev): no detail pages until details are added.
-- Portrait: `public/portrait.svg` / `portrait-color.svg` are stand-ins — swap in the transparent PNG cutout (+ same-crop color copy).
+- Portrait: live at `public/portrait.png`.
 
 Note: the `portfolio-content-prompt.md` "verify" list wasn't supplied, so QA was done against section 8 of the build prompt instead: numbers match exactly (170+ commits, 4 tiers, 3 workflows, Dec 2025, Oct 2025, Aug 2025, May 2025, Jun 2026), no phone number, no revenue/customer claims, all external links open in a new tab with `rel="noopener noreferrer"`.
 
