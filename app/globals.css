@@ -1,0 +1,90 @@
+@import "tailwindcss";
+
+@theme {
+  --font-ui: "Manrope", ui-sans-serif, system-ui, sans-serif;
+  --font-hero: "Poppins", ui-sans-serif, system-ui, sans-serif;
+  --font-section: "Inter", ui-sans-serif, system-ui, sans-serif;
+
+  --color-sheet: #f5f5f5;
+  --color-ink: #1a1a1a;
+  --color-coal: #262626;
+  --color-coal-soft: #2a2a2a;
+  --color-muted: #8a8a8a;
+  --color-muted-dark: #9a9a9a;
+  --color-hairline: #e3e3e3;
+  --color-hairline-dark: #3a3a3a;
+  --color-status: #22c55e;
+
+  --ease-out-expo: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+html {
+  scroll-behavior: auto;
+}
+
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+body {
+  font-family: var(--font-ui);
+  background: #6f6f6f;
+  color: var(--color-ink);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Fixed cloud backdrop — never scrolls */
+.cloud-bg {
+  position: fixed;
+  inset: 0;
+  z-index: -2;
+  background-color: #8a8a8a;
+  background-image: url("/clouds.jpg");
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  filter: grayscale(1);
+}
+/* Fallback painted clouds when /clouds.jpg not yet swapped in */
+.cloud-bg::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(60% 35% at 20% 25%, rgba(255, 255, 255, 0.5), transparent 70%),
+    radial-gradient(50% 30% at 75% 15%, rgba(255, 255, 255, 0.42), transparent 70%),
+    radial-gradient(55% 32% at 55% 55%, rgba(255, 255, 255, 0.36), transparent 70%),
+    radial-gradient(45% 28% at 85% 70%, rgba(255, 255, 255, 0.3), transparent 70%),
+    radial-gradient(50% 30% at 15% 80%, rgba(60, 60, 60, 0.35), transparent 70%),
+    linear-gradient(180deg, #9a9a9a, #7c7c7c 60%, #6a6a6a);
+}
+
+.text-outline {
+  color: transparent;
+  -webkit-text-stroke: 2px var(--color-ink);
+}
+
+@media (max-width: 640px) {
+  .text-outline {
+    -webkit-text-stroke-width: 1.2px;
+  }
+}
+
+:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
