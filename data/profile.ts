@@ -5,8 +5,8 @@ export const profile = {
   role: "Full-Stack Builder — SaaS, Multi-Agent AI, Agentic Infrastructure",
   description: ["Building full-stack products and", "AI agent systems that ship."],
   email: "hello@example.com",
-  portrait: "/portrait.png", // transparent-bg PNG cutout (falls back to initials monogram)
-  portraitColor: "/portrait-color.png", // optional color copy for cursor reveal (falls back to portrait)
+  portrait: "/portrait.svg", // transparent-bg PNG cutout (falls back to initials monogram)
+  portraitColor: "/portrait-color.svg", // optional color copy for cursor reveal (falls back to portrait)
   clouds: "/clouds.jpg", // grayscale cloud photo texture
   availability: "Available for New Project",
   ctaProject: "HAVE A PROJECT IN MIND?",
