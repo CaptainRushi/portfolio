@@ -53,20 +53,12 @@ export default function PortraitReveal() {
         }}
         onMouseLeave={() => (target.current.inside = false)}
       >
-        <div
-          aria-hidden="true"
-          className="absolute inset-0 flex items-center justify-center rounded-full bg-[#E3E3E3] font-[Poppins] text-6xl font-extrabold text-[#8A8A8A]"
-        >
-          {profile.firstName[0]}
-          {profile.lastName[0]}
-        </div>
         <Image
           src={profile.portrait}
           alt={`Portrait of ${profile.firstName} ${profile.lastName}`}
           fill
           priority
           className="object-contain grayscale"
-          onError={(e) => ((e.target as HTMLImageElement).style.display = "none")}
         />
         {!reduce && (
           <div ref={colorRef} className="portrait-color absolute inset-0 opacity-0" aria-hidden="true">

@@ -25,9 +25,10 @@ export default function HeroName({ first, last }: { first: string; last: string 
   return (
     <h1
       aria-label={`${first} ${last}`}
-      className="whitespace-nowrap text-center font-extrabold uppercase leading-[1] tracking-[0.04em] text-[clamp(40px,10.5vw,180px)]"
+      className="text-center font-extrabold uppercase leading-[0.95] tracking-[0.04em] text-[clamp(48px,11.5vw,180px)]"
     >
-      {word(first, true, 0.2)} {word(last, false, 0.35)}
+      <span className="block">{word(first, true, 0.2)}</span>
+      <span className="block">{word(last, false, 0.35)}</span>
     </h1>
   );
 }
