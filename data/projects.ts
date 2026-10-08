@@ -40,7 +40,7 @@ export const projects: Project[] = [
     ],
     liveUrl: "https://vizora1.vercel.app",
     cover: "/projects/vizora/cover.png",
-    images: [],
+    images: ["/projects/vizora/shot-1.png"],
   },
   {
     slug: "mission-control",
